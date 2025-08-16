@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hizkia ❤️ Santa</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    background: #fff0f5;
+}
+header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(270deg, #ff85a2, #ffb3c6, #ff9eb5, #ffc1d6);
+    background-size: 800% 800%;
+    animation: bgMove 15s ease infinite;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+#playMusicBtn { text-align:center; margin:20px;}
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+    background: linear-gradient(270deg, #ffe4ec, #ffd1dc, #ffdee9, #ffc1d6);
+    background-size: 800% 800%;
+    animation: bgMove 20s ease infinite;
+}
+.section.visible { opacity:1; transform:translateY(0);}
+.section:nth-child(even) { flex-direction: row-reverse; }
+.text { flex:1 1 300px; padding:20px; font-size:1.2rem; }
+.media { flex:1 1 300px; padding:20px; display:flex; justify-content:center; align-items:center;}
+img, video { max-width:100%; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.15); background-color:black; transition: transform 0.8s ease;}
+img:hover, video:hover { transform: scale(1.07) rotate(-1deg);}
+#gombalan {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #e91e63;
+    font-size: 1.5rem;
+    margin: 20px 0;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+#gombalan:hover {
+    animation: jumpText 0.6s ease;
+}
+@keyframes jumpText {
+    0% { transform: translateY(0); }
+    20% { transform: translateY(-8px); }
+    40% { transform: translateY(5px); }
+    60% { transform: translateY(-5px); }
+    80% { transform: translateY(3px); }
+    100% { transform: translateY(0); }
+}
+
+button { background-color:#ff4081; color:white; border:none; padding:10px 20px; font-size:1rem; border-radius:8px; cursor:pointer; margin-top:10px;}
+button:hover { background-color:#e91e63; }
+footer { text-align:center; padding:20px; background: linear-gradient(270deg, #ff85a2, #ffb3c6, #ff9eb5, #ffc1d6); background-size:800% 800%; animation:bgMove 15s ease infinite; color:white; font-size:1rem;}
+@media (max-width:768px){.section{flex-direction:column;}}
+@keyframes bgMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+</style>
+</head>
+<body>
+
+<header>Hizkia Ganteng ❤️ Santa</header>
+
+<div id="playMusicBtn">
+    <button id="playMusic">▶️ Putar Musik </button>
+</div>
+
+<div id="container"></div>
+
+<!-- Tulisan gombal di bawah semua section -->
+<div id="gombalan" onclick="gombal()">💌 (click) Kata untuk si Jelek😏</div>
+
+<!-- Instagram Section -->
+<div class="section">
+  <div class="text" style="text-align:center; font-size:1.2rem;">
+    Instagram Kami! ❤️ <br><br>
+    <a href="https://www.instagram.com/hizkiastg" target="_blank">
+      <img src="media/ig_icon.png" alt="IG Hizkia" style="width:40px; margin:5px;">
+    </a>
+    <a href="https://www.instagram.com/santaveronikaa_" target="_blank">
+      <img src="media/ig_icon.png" alt="IG Santa" style="width:40px; margin:5px;">
+    </a>
+    <br>
+    @hizkiastg    @santaveronikaa_
+  </div>
+</div>
+
+<footer>Dibuat dengan ❤️ oleh Hizkia Ganteng untuk Santa Jelek</footer>
+
+<audio id="bgMusic" loop>
+    <source src="media/musik.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+</audio>
+
+<script>
+// Musik fade-in
+const music = document.getElementById('bgMusic');
+document.getElementById('playMusic').addEventListener('click', ()=>{
+    music.volume = 0;
+    music.play();
+    let vol = 0;
+    let fadeIn = setInterval(()=>{
+        vol += 0.05;
+        if(vol >= 1){ vol=1; clearInterval(fadeIn); }
+        music.volume = vol;
+    }, 200);
+    document.getElementById('playMusicBtn').style.display='none';
+});
+
+// Daftar media
+const mediaList = [
+    {type:'img', src:'media/foto1.jpg', text:'Pertama kali lihat kamu, aku langsung lupa jalan pulang! 😍'},
+    {type:'video', src:'media/video1.mp4', text:'Hizkia Ganteng : "Sayang, kamu jalan terus muter ntar liat kamera..."😍'},
+    {type:'img', src:'media/foto2.jpg', text:'Senang banget bisa ketawa bareng kamu… bahkan saat kamu tiba-tiba merajuk 😂'},
+    {type:'img', src:'media/foto3.jpg', text:'Setiap hari bersamamu selalu spesial… apalagi kalau kamu yang traktir jajan.'},
+    {type:'img', src:'media/foto4.jpg', text:'Senyummu bikin dunia cerah… dan aku jadi malas kerja 😆'},
+    {type:'img', src:'media/foto5.jpg', text:'Momen manis kita selalu aku simpan… termasuk saat kamu nyanyi dengan suara jelekmu 🎤😜'},
+    {type:'img', src:'media/foto6.jpg', text:'Aku bersyukur bisa kenal kamu… walaupun kamu cengeng dan sering merajuk 😅 (Cup..Cup..Cup..)'},
+    {type:'video', src:'media/video2.mp4', text:'Nasi padang pertama kita… nasimu gak habis tapi kamu tetap gemoy 😍'},
+    {type:'img', src:'media/foto7.jpg', text:'Kamu bikin hari-hariku penuh warna… kadang kayak pelangi abis hujan 🌈 dan kadang kayak halaman belakang buku tulis anak sd 😏'},
+    {type:'img', src:'media/foto8.jpg', text:'Aku juga nggak sabar bikin kenangan baru bareng kamu… walau kadang kesal masa tiap hari disuruh pulang kampung😆'},
+    {type:'img', src:'media/foto9.jpg', text:'Kamu selalu di hati aku… dan si Ucup dan Udil juga ❤📱'},
+    {type:'img', src:'media/foto10.jpg', text:'H-2 ketemu Santa jelekkkkk...😂'},
+    {type:'img', src:'media/foto11.jpg', text:'Aku mau tua bareng kamu… tapi jangan tua terlalu cepat ya 😝 (Jangan Suka Marah-Marah)'},
+    {type:'img', src:'media/foto12.jpg', text:'Hidup Santa nggak lengkap tanpa orang ganteng, baik, dan rajin kayak Hizkia… dan tanpa seblak.. 😆'},
+    {type:'video', src:'media/video3.mp4', text:'Ini kenapa yaa? 😅'},
+    {type:'video', src:'media/video4.mp4', text:'Queen : "Aku tadi cari apa yaaa?" 😆'},
+    {type:'video', src:'media/video5.mp4', text:'Kue tahun baru..cheekkkk! 😆'},
+    {type:'video', src:'media/video6.mp4', text:'Setiap tawa kamu itu obat terbaik… bahkan lebih manjur dari kopi aku ☕😂'}
+];
+
+// Buat section otomatis
+const container = document.getElementById('container');
+mediaList.forEach((item, index)=>{
+    const section = document.createElement('div');
+    section.className='section';
+    section.innerHTML=`
+        <div class="media">
+            ${item.type==='img'? `<img src="${item.src}" alt="Foto ${index+1}">`
+            : `<video controls><source src="${item.src}" type="video/mp4"></video>`}
+        </div>
+        <div class="text">${item.text}</div>
+    `;
+    container.appendChild(section);
+});
+
+// Fade-in saat scroll
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+    });
+},{threshold:0.1});
+sections.forEach(section=>observer.observe(section));
+
+// Gombalan random (opsional jika mau update teks #gombalan via JS)
+const namaAku="Hizkia Ganteng";
+const namaDia="Santa";
+const gombalanList=[
+    `${namaDia}, kamu alasan ${namaAku} selalu semangat.`,
+    `Hidup ${namaAku} nggak lengkap tanpa ${namaDia}.`,
+    `${namaDia}, kamu bikin segalanya terasa indah.`,
+    `${namaAku} cuma mau tua bareng ${namaDia}.`,
+    `${namaDia}, tolong dikurangin merajuknya..kasian ${namaAku}.`
+];
+function gombal(){
+    let random=Math.floor(Math.random()*gombalanList.length);
+    document.getElementById("gombalan").innerText=gombalanList[random];
+}
+</script>
+
+</body>
+</html>
